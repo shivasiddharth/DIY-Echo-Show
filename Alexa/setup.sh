@@ -41,6 +41,7 @@ BUILD_PATH="$INSTALL_BASE/$BUILD_FOLDER"
 SOUNDS_PATH="$INSTALL_BASE/$SOUNDS_FOLDER"
 DB_PATH="$INSTALL_BASE/$DB_FOLDER"
 CONFIG_DB_PATH="$DB_PATH"
+SS_PATH="$INSTALL_BASE/ss-build"
 UNIT_TEST_MODEL_PATH="$INSTALL_BASE/avs-device-sdk/KWD/inputs/SensoryModels/"
 UNIT_TEST_MODEL="$THIRD_PARTY_PATH/alexa-rpi/models/spot-alexa-rpi-31000.snsr"
 INPUT_CONFIG_FILE="$SOURCE_PATH/avs-device-sdk/Integration/AlexaClientSDKConfig.json"
@@ -76,6 +77,37 @@ build_port_audio() {
   popd
   popd
 }
+
+build_apl_core() {
+  echo ""
+  echo "==============> BUILDING APL CORE =============="
+  echo ""
+  pushd $INSTALL_BASE
+  git clone --single-branch --branch v1.2 git://github.com/alexa/apl-core-library.git
+  pushd $INSTALL_BASE/apl-core-library
+  mkdir build
+  cd build
+  cmake ..
+  make
+}
+
+smart_screen_depends() {
+  # build port audio
+  echo
+  echo "==============> INSTALLING SMART SCREEN DEPENDENCIES =============="
+  echo
+  pushd $THIRD_PARTY_PATH
+  wget https://github.com/zaphoyd/websocketpp/archive/0.8.1.tar.gz -O websocketpp-0.8.1.tar.gz
+  tar -xvzf websocketpp-0.8.1.tar.gz
+
+  pushd $THIRD_PARTY_PATH
+  sudo apt-get -y install libasio-dev --no-install-recommends
+
+  pushd $THIRD_PARTY_PATH
+  curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
+  sudo apt-get install -y nodejs
+}
+
 
 get_platform() {
   uname_str=`uname -a`
@@ -233,22 +265,23 @@ then
   mkdir -p $SOUNDS_PATH
   mkdir -p $DB_PATH
 
+
   run_os_specifics
 
   if [ ! -d "${SOURCE_PATH}/avs-device-sdk" ]
   then
     #get sdk
     echo
-    echo "==============> CLONING SDK =============="
+    echo "==============> CLONING DEVICE SDK =============="
     echo
 
     cd $SOURCE_PATH
     git clone $CLONE_URL
   fi
 
-  # make the SDK
+  # make the DEVICE SDK
   echo
-  echo "==============> BUILDING SDK =============="
+  echo "==============> BUILDING DEVICE SDK =============="
   echo
 
   mkdir -p $BUILD_PATH
@@ -263,6 +296,54 @@ then
 else
   cd $BUILD_PATH
   make SampleApp -j2
+fi
+
+
+if [ ! -d "$SS_PATH" ]
+then
+
+  # Make sure required packages are installed
+  echo "==============> INSTALLING REQUIRED TOOLS AND PACKAGE ============"
+  echo
+
+  build_apl_core
+  smart_screen_depends
+
+  # create / paths
+  echo
+  echo "==============> CREATING PATHS AND GETTING SOUND FILES ============"
+  echo
+
+  mkdir -p $SS_PATH
+
+  if [ ! -d "${INSTALL_BASE}/alexa-smart-screen-sdk" ]
+  then
+    #get smart screen sdk
+    echo
+    echo "==============> CLONING SMART SCREEN SDK =============="
+    echo
+
+    cd $INSTALL_BASE
+    git clone git://github.com/alexa/alexa-smart-screen-sdk.git
+  fi
+
+  # make the SMART SCREEN SDK
+  echo
+  echo "==============> BUILDING SMART SCREEN SDK =============="
+  echo
+
+  mkdir -p $SS_PATH
+  cd $SS_PATH
+  cmake "$SOURCE_PATH/alexa-smart-screen-sdk" \
+      -DCMAKE_BUILD_TYPE=DEBUG \
+      "${CMAKE_SMART_SCREEN[@]}"
+
+  cd $SS_PATH
+  make
+
+else
+  cd $SS_PATH
+  make
 fi
 
 echo

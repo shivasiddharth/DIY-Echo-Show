@@ -27,11 +27,23 @@ CMAKE_PLATFORM_SPECIFIC=(-DSENSORY_KEY_WORD_DETECTOR=ON \
     -DSENSORY_KEY_WORD_DETECTOR_LIB_PATH=$THIRD_PARTY_PATH/alexa-rpi/lib/libsnsr.a \
     -DSENSORY_KEY_WORD_DETECTOR_INCLUDE_DIR=$THIRD_PARTY_PATH/alexa-rpi/include)
 
+CMAKE_SMART_SCREEN=(-DWEBSOCKETPP_INCLUDE_DIR=$THIRD_PARTY_PATH/websocketpp-0.8.1 \
+ -DDISABLE_WEBSOCKET_SSL=ON \
+ -DGSTREAMER_MEDIA_PLAYER=ON \
+ -DCMAKE_BUILD_TYPE=DEBUG \
+ -DPORTAUDIO=ON -DPORTAUDIO_LIB_PATH="$THIRD_PARTY_PATH/portaudio/lib/.libs/libportaudio.$LIB_SUFFIX" \
+ -DPORTAUDIO_INCLUDE_DIR="$THIRD_PARTY_PATH/portaudio/include" \
+ -DAPL_CORE=ON \
+ -DAPLCORE_INCLUDE_DIR=$INSTALL_BASE/apl-core-library/aplcore/include \
+ -DAPLCORE_LIB_DIR=$INSTALL_BASE/apl-core-library/build/aplcore \
+ -DYOGA_INCLUDE_DIR=$INSTALL_BASE/apl-core-library/build/yoga-prefix/src/yoga \
+ -DYOGA_LIB_DIR=$INSTALL_BASE/apl-core-library/build/lib)
+
 GSTREAMER_AUDIO_SINK="alsasink"
 
 install_dependencies() {
   sudo apt-get update
-  sudo apt-get -y install git gcc libdbus-glib-1-dev cmake build-essential libsqlite3-dev libcurl4-openssl-dev libssl-dev libfaad-dev libsoup2.4-dev libgcrypt20-dev libgstreamer-plugins-bad1.0-dev gstreamer1.0-plugins-good libasound2-dev sox gedit vim python3-pip
+  sudo apt-get -y install git gcc libdbus-glib-1-dev cmake build-essential libsqlite3-dev libcurl4-openssl-dev libssl-dev libfaad-dev libsoup2.4-dev libgcrypt20-dev libgstreamer-plugins-bad1.0-dev gstreamer1.0-plugins-good libasound2-dev sox gedit vim python3-pip doxygen
   pip install flask commentjson
 }
 
@@ -58,6 +70,7 @@ generate_start_script() {
   ./SampleApp "$OUTPUT_CONFIG_FILE" "$THIRD_PARTY_PATH/alexa-rpi/models" INFO
 EOF
 }
+
 
 generate_test_script() {
   cat << EOF > "${TEST_SCRIPT}"
