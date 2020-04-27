@@ -1,23 +1,15 @@
-# Assistants-Pi
-## One installer for both Google Asistant and Amazon Alexa   
-## Simultaneously run Google Assistant and Alexa on Raspberry Pi    
+# DIY-Echo-Show
+## Make your own Amazon Echo Show     
+
 *******************************************************************************************************************************
 ### **If you like the work, find it useful and if you would like to get me a :coffee: :smile:** [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7GH3YDCHZ36QN)  
 
 *******************************************************************************************************************************
-### Note:
-**14/03/2020: The project is no longer dependent on the GassistPi repo. Issues with installation have been fixed. CPU usage has also been taken care of.**  
+
 ****************************************************************
 **Before Starting the setup**
 ****************************************************************
-**For Google Assistant**  
-1. Download credentials--->.json file (refer to this doc for creating credentials https://developers.google.com/assistant/sdk/develop/python/config-dev-project-and-account)   
 
-2. Place the .json file in/home/pi directory  
-
-3. **DO NOT RENAME THE JSON FILE**
-
-**For Amazon Alexa**  
 1. Create a security profile for alexa-avs-sample-app if you already don't have one.  
 https://github.com/alexa/avs-device-sdk/wiki/Create-Security-Profile  
 
@@ -25,17 +17,17 @@ https://github.com/alexa/avs-device-sdk/wiki/Create-Security-Profile
 
 
 ***************************************************************
-**Setup Amazon Alexa, Google Assistant or Both**     
+**Setup**     
 ***************************************************************
 1. Clone the git using:
 ```
-git clone https://github.com/shivasiddharth/Assistants-Pi  
+git clone https://github.com/shivasiddharth/DIY-Echo-Show  
 ```
 2. Make the installers executable using:
 ```
-sudo chmod +x /home/pi/Assistants-Pi/scripts/prep-system.sh    
-sudo chmod +x /home/pi/Assistants-Pi/scripts/audio-test.sh   
-sudo chmod +x /home/pi/Assistants-Pi/scripts/installer.sh  
+sudo chmod +x /home/pi/DIY-Echo-Show/scripts/prep-system.sh    
+sudo chmod +x /home/pi/DIY-Echo-Show/scripts/audio-test.sh   
+sudo chmod +x /home/pi/DIY-Echo-Show/scripts/alexa-installer.sh  
 ```
 3. Prepare the system for installing assistants by updating, upgrading and setting up audio using:  
 ```
@@ -64,37 +56,20 @@ sudo /home/pi/Assistants-Pi/scripts/audio-test.sh
 ```
 sudo reboot
 ```
-8. Install the assistant/assistants using the following. This is an interactive script, so just follow the onscreen instructions:
+8. Install the assistant using the following. This is an interactive script, so just follow the onscreen instructions:
 ```
-sudo /home/pi/Assistants-Pi/scripts/installer.sh  
+sudo /home/pi/DIY-Echo-Show/scripts/alexa-installer.sh  
 ```  
-9. After verification of the assistants, to make them auto start on boot:  
+9. After verification of the assistant, to make them auto start on boot:  
 
 Open a terminal and run the following commands:  
 ```
 sudo chmod +x /home/pi/Assistants-Pi/scripts/service-installer.sh
 sudo /home/pi/Assistants-Pi/scripts/service-installer.sh  
-```
-For Alexa:  
-```
 sudo systemctl enable alexa.service  
 ```
-For Google Assistant:  
-```
-sudo systemctl enable google-assistant.service  
-```
-
 
 10. Authorize Alexa before restarting  
 ```
 sudo /home/pi/Assistants-Pi/Alexa/startsample.sh  
 ```
-
-### Manually Start The Google Assistant
-
-At any point of time, if you wish to manually start the assistant:
-
-Open a terminal and execute the following:
-```
-/home/pi/env/bin/python -u /home/pi/Assistants-Pi/Google-Assistant/src/main.py --project_id 'replace this with the project id '--device_model_id 'replace this with the model id'
-```   
