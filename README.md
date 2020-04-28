@@ -60,16 +60,8 @@ sudo reboot
 ```
 sudo /home/pi/DIY-Echo-Show/scripts/alexa-installer.sh  
 ```  
-9. After verification of the assistant, to make them auto start on boot:  
 
-Open a terminal and run the following commands:  
-```
-sudo chmod +x /home/pi/Assistants-Pi/scripts/service-installer.sh
-sudo /home/pi/Assistants-Pi/scripts/service-installer.sh  
-sudo systemctl enable alexa.service  
-```
-
-10. Authorize Alexa before restarting  
+9. Authorize Alexa before restarting  
 ```
 sudo /home/pi/Assistants-Pi/Alexa/startsample.sh  
 ```
