@@ -324,7 +324,7 @@ then
     echo
 
     cd $INSTALL_BASE
-    git clone git://github.com/alexa/alexa-smart-screen-sdk.git
+    git clone git://github.com/shivasiddharth/alexa-smart-screen-sdk.git
   fi
 
   # make the SMART SCREEN SDK
