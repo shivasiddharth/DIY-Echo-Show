@@ -18,7 +18,7 @@
 set -o errexit  # Exit the script if any statement fails.
 set -o nounset  # Exit the script if any uninitialized variable is used.
 
-CLONE_URL="https://github.com/shivasiddharth/avs-device-sdk"
+# CLONE_URL="https://github.com/shivasiddharth/avs-device-sdk"
 
 PORT_AUDIO_FILE="pa_stable_v190600_20161030.tgz"
 PORT_AUDIO_DOWNLOAD_URL="http://www.portaudio.com/archives/$PORT_AUDIO_FILE"
@@ -276,7 +276,7 @@ then
     echo
 
     cd $SOURCE_PATH
-    git clone $CLONE_URL
+     git clone --single-branch --branch v1.19.0 git://github.com/alexa/avs-device-sdk.git
   fi
 
   # make the DEVICE SDK
