@@ -18,7 +18,7 @@
 set -o errexit  # Exit the script if any statement fails.
 set -o nounset  # Exit the script if any uninitialized variable is used.
 
-# CLONE_URL="https://github.com/shivasiddharth/avs-device-sdk"
+CLONE_URL="https://github.com/shivasiddharth/avs-device-sdk"
 
 PORT_AUDIO_FILE="pa_stable_v190600_20161030.tgz"
 PORT_AUDIO_DOWNLOAD_URL="http://www.portaudio.com/archives/$PORT_AUDIO_FILE"
@@ -76,36 +76,6 @@ build_port_audio() {
   make
   popd
   popd
-}
-
-build_apl_core() {
-  echo ""
-  echo "==============> BUILDING APL CORE =============="
-  echo ""
-  pushd $INSTALL_BASE
-  git clone --single-branch --branch v1.2 git://github.com/alexa/apl-core-library.git
-  pushd $INSTALL_BASE/apl-core-library
-  mkdir build
-  cd build
-  cmake ..
-  make
-}
-
-smart_screen_depends() {
-  # build port audio
-  echo
-  echo "==============> INSTALLING SMART SCREEN DEPENDENCIES =============="
-  echo
-  pushd $THIRD_PARTY_PATH
-  wget https://github.com/zaphoyd/websocketpp/archive/0.8.1.tar.gz -O websocketpp-0.8.1.tar.gz
-  tar -xvzf websocketpp-0.8.1.tar.gz
-
-  pushd $THIRD_PARTY_PATH
-  sudo apt-get -y install libasio-dev --no-install-recommends
-
-  pushd $THIRD_PARTY_PATH
-  curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
-  sudo apt-get install -y nodejs
 }
 
 
@@ -276,7 +246,7 @@ then
     echo
 
     cd $SOURCE_PATH
-     git clone --single-branch --branch v1.19.0 git://github.com/alexa/avs-device-sdk.git
+     git clone $CLONE_URL
   fi
 
   # make the DEVICE SDK
@@ -298,53 +268,6 @@ else
   make SampleApp -j2
 fi
 
-
-if [ ! -d "$SS_PATH" ]
-then
-
-  # Make sure required packages are installed
-  echo "==============> INSTALLING REQUIRED TOOLS AND PACKAGE ============"
-  echo
-
-  build_apl_core
-  smart_screen_depends
-
-  # create / paths
-  echo
-  echo "==============> CREATING PATHS AND GETTING SOUND FILES ============"
-  echo
-
-  mkdir -p $SS_PATH
-
-  if [ ! -d "${INSTALL_BASE}/alexa-smart-screen-sdk" ]
-  then
-    #get smart screen sdk
-    echo
-    echo "==============> CLONING SMART SCREEN SDK =============="
-    echo
-
-    cd $INSTALL_BASE
-    git clone git://github.com/shivasiddharth/alexa-smart-screen-sdk.git
-  fi
-
-  # make the SMART SCREEN SDK
-  echo
-  echo "==============> BUILDING SMART SCREEN SDK =============="
-  echo
-
-  mkdir -p $SS_PATH
-  cd $SS_PATH
-  cmake "$SOURCE_PATH/alexa-smart-screen-sdk" \
-      -DCMAKE_BUILD_TYPE=DEBUG \
-      "${CMAKE_SMART_SCREEN[@]}"
-
-  cd $SS_PATH
-  make
-
-else
-  cd $SS_PATH
-  make
-fi
 
 echo
 echo "==============> SAVING CONFIGURATION FILE =============="
