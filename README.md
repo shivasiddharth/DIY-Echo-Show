@@ -31,7 +31,7 @@ sudo chmod +x /home/pi/DIY-Echo-Show/scripts/alexa-installer.sh
 ```
 3. Prepare the system for installing assistants by updating, upgrading and setting up audio using:  
 ```
-sudo /home/pi/Assistants-Pi/scripts/prep-system.sh
+sudo /home/pi/DIY-Echo-Show/scripts/prep-system.sh
 ```
 4. Restart the Pi using:
 ```
@@ -50,7 +50,7 @@ If the contents of .asoundrc are not same as asound.conf, copy the contents from
 
 6. Bonus Script - Test the audio setup using the following code (optional). **Dont panic if the test does not go through successfully, proceed with the installation**:  
 ```
-sudo /home/pi/Assistants-Pi/scripts/audio-test.sh  
+sudo /home/pi/DIY-Echo-Show/scripts/audio-test.sh  
 ```
 7. Restart the Pi using:
 ```
