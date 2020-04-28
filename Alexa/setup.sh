@@ -41,7 +41,7 @@ BUILD_PATH="$INSTALL_BASE/$BUILD_FOLDER"
 SOUNDS_PATH="$INSTALL_BASE/$SOUNDS_FOLDER"
 DB_PATH="$INSTALL_BASE/$DB_FOLDER"
 CONFIG_DB_PATH="$DB_PATH"
-SS_PATH="$INSTALL_BASE/ss-build"
+SDK_INSTALL_PATH="$INSTALL_BASE/sdk-install"
 UNIT_TEST_MODEL_PATH="$INSTALL_BASE/avs-device-sdk/KWD/inputs/SensoryModels/"
 UNIT_TEST_MODEL="$THIRD_PARTY_PATH/alexa-rpi/models/spot-alexa-rpi-31000.snsr"
 INPUT_CONFIG_FILE="$SOURCE_PATH/avs-device-sdk/Integration/AlexaClientSDKConfig.json"
@@ -234,7 +234,7 @@ then
   mkdir -p $THIRD_PARTY_PATH
   mkdir -p $SOUNDS_PATH
   mkdir -p $DB_PATH
-
+  mkdir -p $SDK_INSTALL_PATH
 
   run_os_specifics
 
@@ -258,7 +258,10 @@ then
   cd $BUILD_PATH
   cmake "$SOURCE_PATH/avs-device-sdk" \
       -DCMAKE_BUILD_TYPE=DEBUG \
-      "${CMAKE_PLATFORM_SPECIFIC[@]}"
+      -DCMAKE_INSTALL_PREFIX=$SDK_INSTALL_PATH \
+      "${CMAKE_PLATFORM_SPECIFIC[@]}" \
+
+
 
   cd $BUILD_PATH
   make SampleApp -j2
