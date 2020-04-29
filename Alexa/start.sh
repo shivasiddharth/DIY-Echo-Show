@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ALEXA_FOLDER="/home/pi/Assistants-Pi/Alexa"
+ALEXA_FOLDER="/home/pi/DIY-Echo-Show/Alexa"
 
 _psName2Ids(){
     ps -aux | grep -i "$1" | awk '{print $2}'
@@ -14,5 +14,5 @@ processes=($(_psName2Ids "alexa.py"))
 if [ ${#processes[@]} -le 1 ]; then
     cd "$ALEXA_FOLDER"
     psKill "alexa.py"
-    sudo screen -dm sudo python3 /home/pi/Assistants-Pi/Alexa/alexa.py
+    sudo screen -dm sudo python3 /home/pi/DIY-Echo-Show/Alexa/alexa.py
 fi;

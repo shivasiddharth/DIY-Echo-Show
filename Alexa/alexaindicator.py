@@ -19,7 +19,7 @@ audiosetup=''
 
 USER_PATH = os.path.realpath(os.path.join(__file__, '..', '..','..'))
 
-with open('{}/Assistants-Pi/Alexa/config.yaml'.format(USER_PATH),'r') as conf:
+with open('{}/DIY-Echo-Show/Alexa/config.yaml'.format(USER_PATH),'r') as conf:
     configuration = yaml.load(conf)
 
 if os.path.isfile("{}/audiosetup".format(USER_PATH)):

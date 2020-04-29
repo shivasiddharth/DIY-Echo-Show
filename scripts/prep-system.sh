@@ -60,8 +60,7 @@ echo "Installing screen...."
 sudo apt-get install screen
 echo ""
 echo "Changing username in service files........."
-sed -i 's/__USER__/'${USER}'/g' /home/${USER}/Assistants-Pi/systemd/alexa.service
-sed -i 's/__USER__/'${USER}'/g' /home/${USER}/Assistants-Pi/systemd/google-assistant.service
+sed -i 's/__USER__/'${USER}'/g' /home/${USER}/DIY-Echo-Show/systemd/alexa.service
 echo ""
 echo ""
 echo "Installing Basic Requisites........."
@@ -82,33 +81,33 @@ echo "You have chosen to use $audio audio configuration"
 echo ""
 case $audio in
     AIY-HAT)
-        sudo chmod +x /home/${USER}/Assistants-Pi/audio-drivers/AIY-HAT/scripts/configure-driver.sh
-        sudo /home/${USER}/Assistants-Pi/audio-drivers/AIY-HAT/scripts/configure-driver.sh
-        sudo chmod +x /home/${USER}/Assistants-Pi/audio-drivers/AIY-HAT/scripts/install-alsa-config.sh
-        sudo /home/${USER}/Assistants-Pi/audio-drivers/AIY-HAT/scripts/install-alsa-config.sh
+        sudo chmod +x /home/${USER}/DIY-Echo-Show/audio-drivers/AIY-HAT/scripts/configure-driver.sh
+        sudo /home/${USER}/DIY-Echo-Show/audio-drivers/AIY-HAT/scripts/configure-driver.sh
+        sudo chmod +x /home/${USER}/DIY-Echo-Show/audio-drivers/AIY-HAT/scripts/install-alsa-config.sh
+        sudo /home/${USER}/DIY-Echo-Show/audio-drivers/AIY-HAT/scripts/install-alsa-config.sh
         ;;
     CUSTOM-VOICE-HAT)
-        sudo chmod +x /home/${USER}/Assistants-Pi/audio-drivers/CUSTOM-VOICE-HAT/scripts/custom-voice-hat.sh
-        sudo /home/${USER}/Assistants-Pi/audio-drivers/CUSTOM-VOICE-HAT/scripts/custom-voice-hat.sh
-        sudo chmod +x /home/${USER}/Assistants-Pi/audio-drivers/CUSTOM-VOICE-HAT/scripts/install-i2s.sh
-        sudo /home/${USER}/Assistants-Pi/audio-drivers/CUSTOM-VOICE-HAT/scripts/install-i2s.sh
+        sudo chmod +x /home/${USER}/DIY-Echo-Show/audio-drivers/CUSTOM-VOICE-HAT/scripts/custom-voice-hat.sh
+        sudo /home/${USER}/DIY-Echo-Show/audio-drivers/CUSTOM-VOICE-HAT/scripts/custom-voice-hat.sh
+        sudo chmod +x /home/${USER}/DIY-Echo-Show/audio-drivers/CUSTOM-VOICE-HAT/scripts/install-i2s.sh
+        sudo /home/${USER}/DIY-Echo-Show/audio-drivers/CUSTOM-VOICE-HAT/scripts/install-i2s.sh
         ;;
     USB-MIC-ON-BOARD-JACK)
-        sudo chmod +x /home/${USER}/Assistants-Pi/audio-drivers/USB-MIC-JACK/scripts/usb-mic-onboard-jack.sh
-        sudo /home/${USER}/Assistants-Pi/audio-drivers/USB-MIC-JACK/scripts/usb-mic-onboard-jack.sh
+        sudo chmod +x /home/${USER}/DIY-Echo-Show/audio-drivers/USB-MIC-JACK/scripts/usb-mic-onboard-jack.sh
+        sudo /home/${USER}/DIY-Echo-Show/audio-drivers/USB-MIC-JACK/scripts/usb-mic-onboard-jack.sh
         sudo amixer cset numid=3 1
         echo "Audio set to be forced through 3.5mm jack."
         ;;
     USB-MIC-HDMI)
-        sudo chmod +x /home/${USER}/Assistants-Pi/audio-drivers/USB-MIC-HDMI/scripts/configure.sh
-        sudo /home/${USER}/Assistants-Pi/audio-drivers/USB-MIC-HDMI/scripts/configure.sh
-        sudo chmod +x /home/${USER}/Assistants-Pi/audio-drivers/USB-MIC-HDMI/scripts/install-usb-mic-hdmi.sh
-        sudo /home/${USER}/Assistants-Pi/audio-drivers/USB-MIC-HDMI/scripts/install-usb-mic-hdmi.sh
+        sudo chmod +x /home/${USER}/DIY-Echo-Show/audio-drivers/USB-MIC-HDMI/scripts/configure.sh
+        sudo /home/${USER}/DIY-Echo-Show/audio-drivers/USB-MIC-HDMI/scripts/configure.sh
+        sudo chmod +x /home/${USER}/DIY-Echo-Show/audio-drivers/USB-MIC-HDMI/scripts/install-usb-mic-hdmi.sh
+        sudo /home/${USER}/DIY-Echo-Show/audio-drivers/USB-MIC-HDMI/scripts/install-usb-mic-hdmi.sh
         echo "Audio set to be forced through HDMI."
         ;;
     USB-SOUND-CARD-or-DAC)
-        sudo chmod +x /home/${USER}/Assistants-Pi/audio-drivers/USB-DAC/scripts/install-usb-dac.sh
-        sudo /home/${USER}/Assistants-Pi/audio-drivers/USB-DAC/scripts/install-usb-dac.sh
+        sudo chmod +x /home/${USER}/DIY-Echo-Show/audio-drivers/USB-DAC/scripts/install-usb-dac.sh
+        sudo /home/${USER}/DIY-Echo-Show/audio-drivers/USB-DAC/scripts/install-usb-dac.sh
 	      ;;
     RESPEAKER-HAT)
         cd /home/${USER}/

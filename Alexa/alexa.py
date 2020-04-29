@@ -23,12 +23,12 @@ def run_command(command):
             print(output.strip())
             if "authorized" in str(output.strip()).lower():
                 #Change the path to your desired audio file for the startup tone
-                subprocess.Popen(["aplay", "{}/Assistants-Pi/sample-audio-files/AlexaStartup.wav".format(USER_PATH)], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                subprocess.Popen(["aplay", "{}/DIY-Echo-Show/sample-audio-files/AlexaStartup.wav".format(USER_PATH)], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 #Comment the line below if you want to create your own indicator pattern
                 assistantindicator('off')
             if "listening..." in str(output.strip().lower()):
                 #Change the path to your desired audio file for the trigger alert tone
-                subprocess.Popen(["aplay", "{}/Assistants-Pi/sample-audio-files/AlexaTriggered.wav".format(USER_PATH)], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                subprocess.Popen(["aplay", "{}/DIY-Echo-Show/sample-audio-files/AlexaTriggered.wav".format(USER_PATH)], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 #Comment the line below if you want to create your own indicator pattern
                 assistantindicator('listening')
             if "speaking..." in str(output.strip()).lower():
@@ -41,4 +41,4 @@ def run_command(command):
     return rc
 
 #Change the path to your startsample file
-run_command("sudo {}/Assistants-Pi/Alexa/startsample.sh".format(USER_PATH))
+run_command("sudo {}/DIY-Echo-Show/Alexa/startsample.sh".format(USER_PATH))

@@ -13,7 +13,7 @@
 1. Create a security profile for alexa-avs-sample-app if you already don't have one.  
 https://github.com/alexa/avs-device-sdk/wiki/Create-Security-Profile  
 
-2. Download the **"config.json"** file and place it in the **/home/pi/Assistants-Pi/Alexa** directory.  
+2. Download the **"config.json"** file and place it in the **/home/pi/DIY-Echo-Show/Alexa** directory.  
 
 
 ***************************************************************
@@ -63,5 +63,5 @@ sudo /home/pi/DIY-Echo-Show/scripts/alexa-installer.sh
 
 9. Authorize Alexa before restarting  
 ```
-sudo /home/pi/Assistants-Pi/Alexa/startsample.sh  
+sudo /home/pi/DIY-Echo-Show/Alexa/startsample.sh  
 ```
