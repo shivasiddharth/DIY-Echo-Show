@@ -41,4 +41,4 @@ def run_command(command):
     return rc
 
 #Change the path to your startsample file
-run_command("sudo {}/DIY-Echo-Show/Alexa/startsample.sh".format(USER_PATH))
+run_command("sudo {}/DIY-Echo-Show/Alexa/startsamplesmart.sh".format(USER_PATH))

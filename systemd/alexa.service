@@ -1,10 +1,11 @@
 [Unit]
-Description=Amazon Alexa Voice Service
+Description=Amazon Alexa Smart Screen Service
 Wants=network-online.target
 After=network-online.target
 
 [Service]
 Type=forking
+ExecStart=python3 /home/__USER__/DIY-Echo-Show/snowboy/voiceactivation.py
 ExecStart=/home/__USER__/DIY-Echo-Show/Alexa/start.sh
 
 WorkingDirectory=/home/__USER__/

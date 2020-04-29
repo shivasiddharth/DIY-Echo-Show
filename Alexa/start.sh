@@ -10,9 +10,9 @@ psKill(){
      _psName2Ids $1 | xargs sudo kill -9 > /dev/null 2>&1;
 }
 
-processes=($(_psName2Ids "alexa.py"))
+processes=($(_psName2Ids "alexa-screen.py"))
 if [ ${#processes[@]} -le 1 ]; then
     cd "$ALEXA_FOLDER"
-    psKill "alexa.py"
-    sudo screen -dm sudo python3 /home/pi/DIY-Echo-Show/Alexa/alexa.py
+    psKill "alexa-screen.py"
+    sudo screen -dm sudo python3 /home/pi/DIY-Echo-Show/Alexa/alexa-screen.py
 fi;

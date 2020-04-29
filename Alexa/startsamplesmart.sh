@@ -13,13 +13,7 @@ then
     exec sudo -u $RUN_AS $0
 fi
 
-echo "This could take a while grab a coffee or beer........."
-cd ${GIT_DIR}/Alexa/
-sudo chmod +x ./setup.sh
-sudo chmod +x ./pi.sh
-sudo chmod +x ./genConfig.sh
-sudo ./setup.sh ./config.json
-sudo chmod +x ./test.sh
-sudo chmod +x ./startsample.sh
-echo "Testing Alexa Installation............"
-sudo ./test.sh
+cd ${GIT_DIR}/Alexa/ss-build
+./modules/Alexa/SampleApp/src/SampleApp -C \
+/home/pi/DIY-Echo-Show/Alexa/build/Integration/AlexaClientSDKConfig.json -C \
+/home/pi/DIY-Echo-Show/Alexa/alexa-smart-screen-sdk/modules/GUI/config/SmartScreenSDKConfig.json -L INFO
