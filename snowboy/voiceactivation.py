@@ -18,7 +18,6 @@ def is_silent(snd_data):
     "Returns 'True' if below the 'silent' threshold"
     return max(snd_data) < THRESHOLD
 
-
 def checkspeech():
     """
     Record a word or words from the microphone and
@@ -30,7 +29,7 @@ def checkspeech():
     it without getting chopped off.
     """
     subprocess.call("wmctrl -a Chromium",shell=True)
-    
+
     p = pyaudio.PyAudio()
     stream = p.open(format=FORMAT, channels=1, rate=RATE,
         input=True, output=True,
@@ -43,7 +42,7 @@ def checkspeech():
 
     while 1:
         subprocess.call("xdotool keydown A", shell=True)
-        
+
         # little endian, signed short
         snd_data = array('h', stream.read(CHUNK_SIZE))
         if byteorder == 'big':
@@ -64,20 +63,17 @@ def checkspeech():
     stream.close()
     p.terminate()
     subprocess.call("xdotool keyup A", shell=True)
-    
-interrupted = False
 
+interrupted = False
 
 def signal_handler(signal, frame):
     global interrupted
     interrupted = True
 
-
 def interrupt_callback():
     global interrupted
-    return interrupted
-    
-    
+    return interrupted    
+
 model = "/home/pi/DIY-Echo-Show/snowboy/resources/alexa.umdl"
 
 # capture SIGINT signal, e.g., Ctrl+C

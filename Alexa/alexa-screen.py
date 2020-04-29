@@ -26,19 +26,19 @@ def run_command(command):
                 subprocess.Popen(["aplay", "{}/DIY-Echo-Show/sample-audio-files/AlexaStartup.wav".format(USER_PATH)], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 #Comment the line below if you want to create your own indicator pattern
                 assistantindicator('off')
-            if "listening..." in str(output.strip().lower()):
+            if "alexa state: listening" in str(output.strip().lower()):
                 #Change the path to your desired audio file for the trigger alert tone
                 subprocess.Popen(["aplay", "{}/DIY-Echo-Show/sample-audio-files/AlexaTriggered.wav".format(USER_PATH)], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 #Comment the line below if you want to create your own indicator pattern
                 assistantindicator('listening')
-            if "speaking..." in str(output.strip()).lower():
+            if "alexa state: speaking" in str(output.strip()).lower():
                 #Comment the line below if you want to create your own indicator pattern
                 assistantindicator('speaking')
-            if "idle!" in str(output.strip().lower()) or "SPEAKING,to=IDLE" in str(output.strip()):
+            if "alexa state: idle" in str(output.strip().lower()) or "SPEAKING,to=IDLE" in str(output.strip()):
                 #Comment the line below if you want to create your own indicator pattern
                 assistantindicator('off')
     rc = process.poll()
     return rc
 
 #Change the path to your startsample file
-run_command("sudo {}/DIY-Echo-Show/Alexa/startsamplesmart.sh".format(USER_PATH))
+run_command("sudo {}/DIY-Echo-Show/Alexa/startsampleassistant.sh".format(USER_PATH))

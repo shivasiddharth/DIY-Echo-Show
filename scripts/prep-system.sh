@@ -59,6 +59,9 @@ echo ""
 echo "Installing screen...."
 sudo apt-get install screen
 echo ""
+echo "Installing files for wakeword activation...."
+sudo apt-get install wmctrl portaudio19-dev python-pyaudio python3-pyaudio sox libatlas-base-dev
+echo ""
 echo "Changing username in service files........."
 sed -i 's/__USER__/'${USER}'/g' /home/${USER}/DIY-Echo-Show/systemd/alexa.service
 echo ""
@@ -72,6 +75,8 @@ sudo pip3 install gpiozero
 pip3 install gpiozero
 sudo pip3 install numpy
 pip3 install numpy
+pip3 install pyaudio
+sudo pip3 install pyaudio
 echo ""
 echo ""
 echo "Select your audio and mic configuration: "

@@ -6,7 +6,8 @@ After=network-online.target
 [Service]
 Type=forking
 ExecStart=python3 /home/__USER__/DIY-Echo-Show/snowboy/voiceactivation.py
-ExecStart=/home/__USER__/DIY-Echo-Show/Alexa/start.sh
+ExecStart=/home/__USER__/DIY-Echo-Show/Alexa/start-screen.sh
+ExecStart=/home/__USER__/DIY-Echo-Show/Alexa/start-assistant.sh
 
 WorkingDirectory=/home/__USER__/
 StandardOutput=inherit

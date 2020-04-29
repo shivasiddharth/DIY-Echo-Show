@@ -13,7 +13,4 @@ then
     exec sudo -u $RUN_AS $0
 fi
 
-cd ${GIT_DIR}/Alexa/ss-build
-./modules/Alexa/SampleApp/src/SampleApp -C \
-/home/pi/DIY-Echo-Show/Alexa/build/Integration/AlexaClientSDKConfig.json -C \
-/home/pi/DIY-Echo-Show/Alexa/alexa-smart-screen-sdk/modules/GUI/config/SmartScreenSDKConfig.json -L INFO
+/usr/bin/chromium-browser --window-position=0,0 "file:///home/pi/DIY-Echo-Show/Alexa/ss-build//modules/GUI/index.html"
