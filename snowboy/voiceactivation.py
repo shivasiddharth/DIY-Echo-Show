@@ -18,7 +18,7 @@ def is_silent(snd_data):
     "Returns 'True' if below the 'silent' threshold"
     return max(snd_data) < THRESHOLD
 
-def checkspeech():
+def pressholdtotalk():
     """
     Record a word or words from the microphone and
     return the data as an array of signed shorts.
@@ -63,6 +63,10 @@ def checkspeech():
     stream.close()
     p.terminate()
     subprocess.call("xdotool keyup A", shell=True)
+    
+def taptotalk():
+    subprocess.call("wmctrl -a Chromium",shell=True)
+    subprocess.call("xdotool key A", shell=True)
 
 interrupted = False
 
@@ -83,7 +87,7 @@ detector = snowboydecoder.HotwordDetector(model, sensitivity=0.5)
 print('Listening... Press Ctrl+C to exit')
 
 # main loop
-detector.start(detected_callback=checkspeech,
+detector.start(detected_callback=taptotalk,
                interrupt_check=interrupt_callback,
                sleep_time=0.03)
 

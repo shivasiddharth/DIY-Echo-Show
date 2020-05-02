@@ -1,4 +1,13 @@
-cmake -DCMAKE_PREFIX_PATH=/home/pi/DIY-Echo-Show/Alexa/sdk-install \
+#!/bin/bash
+
+if [ ! -d ss-build ]
+then
+  mkdir ss-build
+fi
+
+cd ss-build
+
+sudo cmake -DCMAKE_PREFIX_PATH=/home/pi/DIY-Echo-Show/Alexa/sdk-install \
  -DWEBSOCKETPP_INCLUDE_DIR=/home/pi/DIY-Echo-Show/Alexa/third-party/websocketpp-0.8.1 \
  -DDISABLE_WEBSOCKET_SSL=ON \
  -DGSTREAMER_MEDIA_PLAYER=ON \
@@ -15,4 +24,4 @@ cmake -DCMAKE_PREFIX_PATH=/home/pi/DIY-Echo-Show/Alexa/sdk-install \
  -DSENSORY_KEY_WORD_DETECTOR_INCLUDE_DIR=/home/pi/DIY-Echo-Show/Alexa/third-party/alexa-rpi/include \
   ../alexa-smart-screen-sdk
 
-make
+sudo make

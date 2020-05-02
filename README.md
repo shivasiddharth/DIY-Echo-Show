@@ -28,7 +28,9 @@ git clone https://github.com/shivasiddharth/DIY-Echo-Show
 sudo chmod +x /home/pi/DIY-Echo-Show/scripts/prep-system.sh    
 sudo chmod +x /home/pi/DIY-Echo-Show/scripts/audio-test.sh   
 sudo chmod +x /home/pi/DIY-Echo-Show/scripts/alexa-voice-installer.sh  
-sudo chmod +x /home/pi/DIY-Echo-Show/scripts/alexa-screen-installer.sh   
+sudo chmod +x /home/pi/DIY-Echo-Show/scripts/alexa-screen-installer.sh    
+sudo chmod +x /home/pi/DIY-Echo-Show/Alexa/cmake-device.sh  
+sudo chmod +x /home/pi/DIY-Echo-Show/Alexa/cmake-screen.sh  
 ```
 3. Prepare the system for installing assistants by updating, upgrading and setting up audio using:  
 ```
@@ -69,16 +71,20 @@ sudo /home/pi/DIY-Echo-Show/Alexa/startsample.sh
 
 10. Install the Alexa screen now using the following:   
 ```
+
 sudo /home/pi/DIY-Echo-Show/scripts/alexa-screen-installer.sh  
 ```  
 
 11. Try starting the assistant using the following for authentication:   
 ```
+sudo chmod +x /home/pi/DIY-Echo-Show/Alexa/startsampleassistant.sh
 sudo /home/pi/DIY-Echo-Show/Alexa/startsampleassistant.sh  
 ```  
 
 12. After authentication start the assistant and smart screen using:   
 ```
+sudo chmod +x /home/pi/DIY-Echo-Show/Alexa/start-assistant.sh  
+sudo chmod +x /home/pi/DIY-Echo-Show/Alexa/start-screen.sh  
 sudo /home/pi/DIY-Echo-Show/Alexa/start-assistant.sh  
 sudo /home/pi/DIY-Echo-Show/Alexa/start-screen.sh  
 ```  

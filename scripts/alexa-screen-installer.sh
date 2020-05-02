@@ -20,8 +20,11 @@ echo ""
 cd ${GIT_DIR}/Alexa/
 
 # Setup APL Core Library
-git clone --single-branch --branch v1.2 git://github.com/alexa/apl-core-library.git
-cd $HOME/sdk_folder/apl-core-library
+if [ ! -d apl-core-library ]
+then
+  git clone --single-branch --branch v1.2 git://github.com/alexa/apl-core-library.git
+fi
+cd $GIT_DIR/Alexa/apl-core-library
 if [ ! -d build ]
 then
   mkdir build
@@ -31,9 +34,9 @@ cmake ..
 make
 
 # Setup Screen Dependencies
-cd third-party
-wget https://github.com/zaphoyd/websocketpp/archive/0.8.1.tar.gz -O websocketpp-0.8.1.tar.gz
-tar -xvzf websocketpp-0.8.1.tar.gz
+cd $GIT_DIR/Alexa/third-party
+sudo wget https://github.com/zaphoyd/websocketpp/archive/0.8.1.tar.gz -O websocketpp-0.8.1.tar.gz
+sudo tar -xvzf websocketpp-0.8.1.tar.gz
 
 sudo apt-get -y install libasio-dev --no-install-recommends
 
@@ -46,7 +49,13 @@ cd ${GIT_DIR}/Alexa/
 sudo chmod +x ./cmake-device.sh
 sudo chmod +x ./cmake-screen.sh
 sudo ./cmake-device.sh
-git clone git://github.com/shivasiddharth/alexa-smart-screen-sdk.git
+
+if [ ! -d alexa-smart-screen-sdk ]
+then
+  git clone git://github.com/shivasiddharth/alexa-smart-screen-sdk.git
+fi
+
 sudo ./cmake-screen.sh
 
+sudo rm ${GIT_DIR}/Alexa/build/Integration/AlexaClientSDKConfig.json
 sudo cp ${GIT_DIR}/Alexa/Backup-AlexaClientSDKConfig.json ${GIT_DIR}/Alexa/build/Integration/AlexaClientSDKConfig.json

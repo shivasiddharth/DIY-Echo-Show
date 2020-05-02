@@ -53,18 +53,11 @@ echo ""
 echo "Installing Git........"
 sudo apt-get install -y git
 echo ""
-echo "Installing pulseaudio....."
-sudo apt-get install pulseaudio
-echo ""
 echo "Installing screen...."
 sudo apt-get install screen
 echo ""
 echo "Installing files for wakeword activation...."
-sudo apt-get install wmctrl portaudio19-dev python-pyaudio python3-pyaudio sox libatlas-base-dev
-echo ""
-echo "Changing username in service files........."
-sed -i 's/__USER__/'${USER}'/g' /home/${USER}/DIY-Echo-Show/systemd/alexa.service
-echo ""
+sudo apt-get install wmctrl portaudio19-dev python-pyaudio python3-pyaudio sox libatlas-base-dev xdotool
 echo ""
 echo "Installing Basic Requisites........."
 sudo pip3 install pyyaml
