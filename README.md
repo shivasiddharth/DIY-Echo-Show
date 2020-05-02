@@ -54,7 +54,7 @@ Open a second terminal and type:
 ```
 sudo nano ~/.asoundrc
 ```
-If the contents of .asoundrc are not same as asound.conf, copy the contents from asound.conf to .asoundrc, save using ctrl+x and y
+If the contents of .asoundrc are not same as asound.conf, make them both same.  
 
 6. Bonus Script - Test the audio setup using the following code (optional). **Dont panic if the test does not go through successfully, proceed with the installation**:  
 ```
