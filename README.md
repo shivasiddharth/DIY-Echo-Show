@@ -12,7 +12,7 @@
 alt="Detailed Youtube Video" width="240" height="180" border="10" /></a>
 
 ****************************************************************   
-## Before Starting the setup   
+### Before Starting the setup   
 ****************************************************************  
 
 1. Create a security profile for alexa-avs-sample-app if you already don't have one.  
