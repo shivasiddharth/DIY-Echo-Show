@@ -4,9 +4,16 @@
 *******************************************************************************************************************************
 ### **If you like the work, find it useful and if you would like to get me a :coffee: :smile:** [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7GH3YDCHZ36QN)  
 
-****************************************************************
-**Before Starting the setup**
-****************************************************************
+****************************************************************   
+### How to Video    
+****************************************************************    
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=OLc5EpjWpuw
+" target="_blank"><img src="http://img.youtube.com/vi/OLc5EpjWpuw/0.jpg"
+alt="Detailed Youtube Video" width="240" height="180" border="10" /></a>
+
+****************************************************************   
+## Before Starting the setup   
+****************************************************************  
 
 1. Create a security profile for alexa-avs-sample-app if you already don't have one.  
 https://github.com/alexa/avs-device-sdk/wiki/Create-Security-Profile  
@@ -15,7 +22,7 @@ https://github.com/alexa/avs-device-sdk/wiki/Create-Security-Profile
 
 
 ***************************************************************
-**Setup**     
+### Setup       
 ***************************************************************
 1. Clone the git using:
 ```
